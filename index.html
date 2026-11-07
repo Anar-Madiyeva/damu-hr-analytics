@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR-аналитика — АО «Фонд «Даму»</title>
+  <meta name="description" content="Аналитический отчёт по персоналу для Руководства АО «Фонд «Даму»">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- ===== Шапка ===== -->
+  <header class="report-header">
+    <div class="container">
+      <div class="report-header__brand">АО «Фонд «Даму»</div>
+      <h1 class="report-header__title" id="report-title"></h1>
+      <p class="report-header__subtitle" id="report-subtitle"></p>
+      <div class="report-header__meta" id="report-meta"></div>
+    </div>
+  </header>
+
+  <!-- ===== FR-8. Липкая навигация ===== -->
+  <nav class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#kpi"        class="nav__link">Показатели</a>
+      <a href="#structure"  class="nav__link">Структура</a>
+      <a href="#movement"   class="nav__link">Движение</a>
+      <a href="#workload"   class="nav__link">Загруженность</a>
+      <a href="#training"   class="nav__link">Обучение</a>
+      <a href="#quality"    class="nav__link">Качество</a>
+      <a href="#conclusions" class="nav__link">Выводы</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- ===== FR-1. Ключевые показатели ===== -->
+    <section id="kpi" class="section">
+      <h2 class="section__title">Ключевые показатели</h2>
+      <p class="section__hint" id="kpi-period"></p>
+      <div class="kpi-grid" id="kpi-grid"></div>
+    </section>
+
+    <!-- ===== FR-2. Структура персонала ===== -->
+    <section id="structure" class="section">
+      <h2 class="section__title">Структура персонала</h2>
+
+      <div class="card">
+        <h3 class="card__title">Численность по подразделениям (план / факт, ТОП-15)</h3>
+        <div class="chart chart--tall"><canvas id="chart-departments"></canvas></div>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="card">
+          <h3 class="card__title">Возрастная структура</h3>
+          <div class="chart"><canvas id="chart-age"></canvas></div>
+        </div>
+        <div class="card">
+          <h3 class="card__title">Категории персонала</h3>
+          <div class="chart"><canvas id="chart-categories"></canvas></div>
+        </div>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="card">
+          <h3 class="card__title">Гендерная структура — все сотрудники</h3>
+          <div class="chart"><canvas id="chart-gender-all"></canvas></div>
+        </div>
+        <div class="card">
+          <h3 class="card__title">Гендерная структура — руководящие должности</h3>
+          <div class="chart"><canvas id="chart-gender-managers"></canvas></div>
+        </div>
+      </div>
+
+      <div class="grid grid--3">
+        <div class="card">
+          <h3 class="card__title">Образовательный уровень</h3>
+          <div class="chart"><canvas id="chart-education"></canvas></div>
+        </div>
+        <div class="card">
+          <h3 class="card__title">Стаж работы в Фонде</h3>
+          <div class="chart"><canvas id="chart-tenure"></canvas></div>
+        </div>
+        <div class="card">
+          <h3 class="card__title">Социальный портрет</h3>
+          <div class="chart"><canvas id="chart-social"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FR-3. Движение персонала ===== -->
+    <section id="movement" class="section">
+      <h2 class="section__title">Движение персонала</h2>
+
+      <div class="card">
+        <h3 class="card__title">Приём и увольнения в динамике</h3>
+        <div class="chart"><canvas id="chart-dynamics"></canvas></div>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="card">
+          <h3 class="card__title">Источники привлечения кандидатов</h3>
+          <div class="chart"><canvas id="chart-sources"></canvas></div>
+        </div>
+        <div class="card">
+          <h3 class="card__title">Причины увольнений</h3>
+          <div class="chart"><canvas id="chart-reasons"></canvas></div>
+        </div>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="card">
+          <h3 class="card__title">ТОП-7 подразделений по текучести, %</h3>
+          <div class="chart"><canvas id="chart-turnover-top"></canvas></div>
+        </div>
+        <div class="card">
+          <h3 class="card__title">Текучесть по возрастным группам, %</h3>
+          <div class="chart"><canvas id="chart-turnover-age"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FR-4. Загруженность подразделений ===== -->
+    <section id="workload" class="section">
+      <h2 class="section__title">Загруженность подразделений</h2>
+      <p class="section__hint">
+        Индекс 0–100. Статусы:
+        <span class="badge badge--critical">Критическая ≥ 95</span>
+        <span class="badge badge--high">Высокая 85–94</span>
+        <span class="badge badge--optimal">Оптимальная 70–84</span>
+        <span class="badge badge--moderate">Умеренная &lt; 70</span>
+      </p>
+
+      <div class="card">
+        <div class="chart chart--tall"><canvas id="chart-workload"></canvas></div>
+      </div>
+
+      <div class="card">
+        <h3 class="card__title">Детализация по подразделениям</h3>
+        <div class="table-wrap">
+          <table class="table" id="workload-table">
+            <thead>
+              <tr>
+                <th>Подразделение</th>
+                <th class="num">Задачи</th>
+                <th class="num">Штат</th>
+                <th class="num">Часов на задачу</th>
+                <th class="num">Индекс</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FR-5. Обучение и развитие ===== -->
+    <section id="training" class="section">
+      <h2 class="section__title">Обучение и развитие</h2>
+
+      <div class="kpi-grid kpi-grid--4" id="training-summary"></div>
+
+      <div class="grid grid--2">
+        <div class="card">
+          <h3 class="card__title">Обученные по категориям персонала</h3>
+          <div class="chart"><canvas id="chart-training-category"></canvas></div>
+        </div>
+        <div class="card">
+          <h3 class="card__title">Обучение по направлениям</h3>
+          <div class="chart"><canvas id="chart-training-direction"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FR-6. Качественные показатели ===== -->
+    <section id="quality" class="section">
+      <h2 class="section__title">Качественные показатели</h2>
+
+      <div class="grid grid--2">
+        <div class="card">
+          <h3 class="card__title">Результаты оценки деятельности, %</h3>
+          <div class="chart"><canvas id="chart-performance"></canvas></div>
+        </div>
+        <div class="card">
+          <h3 class="card__title">Кадровый резерв</h3>
+          <div class="reserve-stats" id="reserve-stats"></div>
+          <div class="chart chart--short"><canvas id="chart-reserve"></canvas></div>
+        </div>
+      </div>
+
+      <div class="grid grid--3">
+        <div class="card">
+          <h3 class="card__title">Назначения: внутренние / внешние</h3>
+          <div class="chart"><canvas id="chart-appointments"></canvas></div>
+        </div>
+        <div class="card">
+          <h3 class="card__title">Награждения по видам</h3>
+          <div class="chart"><canvas id="chart-awards"></canvas></div>
+        </div>
+        <div class="card">
+          <h3 class="card__title">Изменение должностных окладов</h3>
+          <div class="salary-stats" id="salary-stats"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FR-7. Выводы и рекомендации ===== -->
+    <section id="conclusions" class="section">
+      <h2 class="section__title">Выводы и рекомендации</h2>
+      <div class="conclusions" id="conclusions-list"></div>
+    </section>
+
+  </main>
+
+  <footer class="report-footer">
+    <div class="container">
+      <span id="footer-confidentiality"></span>
+      <span id="footer-responsible"></span>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

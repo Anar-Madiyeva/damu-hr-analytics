@@ -1,0 +1,323 @@
+/* =========================================================
+ * styles.css — HR-аналитика АО «Фонд «Даму»
+ * Деловой стиль: светлый фон, корпоративный синий #0b5fa5
+ * ========================================================= */
+
+:root {
+  --blue: #0b5fa5;
+  --blue-dark: #084a82;
+  --blue-light: #e8f1f8;
+  --ink: #1f2a37;
+  --ink-soft: #5b6b7c;
+  --line: #d9e2ec;
+  --bg: #f5f8fb;
+  --card: #ffffff;
+  --green: #1e8e5a;
+  --green-bg: #e3f4ec;
+  --amber: #b97a0c;
+  --amber-bg: #fbf0dc;
+  --red: #c0392b;
+  --red-bg: #fbe6e3;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(16, 42, 67, 0.08), 0 4px 14px rgba(16, 42, 67, 0.05);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Segoe UI Variable", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Шапка ---------- */
+.report-header {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+  color: #fff;
+  padding: 36px 0 30px;
+}
+.report-header__brand {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.report-header__title {
+  margin: 8px 0 4px;
+  font-size: 30px;
+  font-weight: 700;
+}
+.report-header__subtitle {
+  margin: 0 0 14px;
+  font-size: 16px;
+  opacity: 0.92;
+}
+.report-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  font-size: 13px;
+  opacity: 0.88;
+}
+.report-header__meta strong { font-weight: 600; }
+
+/* ---------- Навигация (FR-8) ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 1px 4px rgba(16, 42, 67, 0.06);
+}
+.nav__inner {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+}
+.nav__link {
+  padding: 13px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.nav__link:hover { color: var(--blue); }
+.nav__link.active {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+
+/* ---------- Разделы ---------- */
+.section { padding: 40px 0 8px; }
+.section__title {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--blue-dark);
+  border-left: 4px solid var(--blue);
+  padding-left: 12px;
+}
+.section__hint {
+  margin: 0 0 18px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+/* ---------- KPI-карточки (FR-1) ---------- */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+.kpi-grid--4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+.kpi {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+}
+.kpi__label {
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  min-height: 2.6em;
+}
+.kpi__value {
+  margin-top: 6px;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.kpi__unit { font-size: 15px; font-weight: 500; color: var(--ink-soft); margin-left: 3px; }
+.kpi__delta {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+.kpi__delta--good { color: var(--green); background: var(--green-bg); }
+.kpi__delta--bad  { color: var(--red);   background: var(--red-bg); }
+.kpi__delta--flat { color: var(--ink-soft); background: #eef2f6; }
+.kpi__prev { margin-top: 6px; font-size: 12px; color: var(--ink-soft); }
+
+/* ---------- Сетки и карточки ---------- */
+.grid { display: grid; gap: 16px; margin-top: 16px; }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  margin-top: 16px;
+}
+.grid .card { margin-top: 0; }
+.card__title {
+  margin: 0 0 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ---------- Диаграммы ---------- */
+.chart { position: relative; height: 300px; }
+.chart--tall  { height: 460px; }
+.chart--short { height: 200px; }
+
+.chart-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--ink-soft);
+  font-size: 13px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* ---------- Бейджи статусов (FR-4) ---------- */
+.badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge--critical { color: var(--red);   background: var(--red-bg); }
+.badge--high     { color: var(--amber); background: var(--amber-bg); }
+.badge--optimal  { color: var(--green); background: var(--green-bg); }
+.badge--moderate { color: var(--ink-soft); background: #eef2f6; }
+
+/* ---------- Таблица ---------- */
+.table-wrap { overflow-x: auto; }
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.table th, .table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+.table th {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  background: #f8fafc;
+}
+.table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.table tbody tr:hover { background: var(--blue-light); }
+
+/* ---------- Стат-блоки (резерв, оклады) ---------- */
+.reserve-stats, .salary-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.stat {
+  flex: 1 1 120px;
+  background: var(--blue-light);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.stat__value { font-size: 24px; font-weight: 700; color: var(--blue-dark); }
+.stat__label { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+
+/* ---------- Выводы (FR-7) ---------- */
+.conclusions { display: grid; gap: 14px; }
+.conclusion {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--blue);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  box-shadow: var(--shadow);
+}
+.conclusion__title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--blue-dark);
+}
+.conclusion__text { margin: 0; color: var(--ink); }
+
+/* ---------- Футер ---------- */
+.report-footer {
+  margin-top: 48px;
+  padding: 20px 0;
+  background: #eaf0f6;
+  border-top: 1px solid var(--line);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+.report-footer .container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+#footer-confidentiality {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--red);
+}
+
+/* ---------- Адаптивность ---------- */
+@media (max-width: 1024px) {
+  .grid--3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .grid--2, .grid--3 { grid-template-columns: 1fr; }
+  .report-header__title { font-size: 24px; }
+  .chart { height: 260px; }
+  .chart--tall { height: 420px; }
+}
+
+/* ---------- Печать (Ctrl+P → PDF) ---------- */
+@media print {
+  .nav { display: none; }
+  body { background: #fff; font-size: 12px; }
+  .section { padding: 18px 0 4px; break-inside: avoid-page; }
+  .card { break-inside: avoid-page; box-shadow: none; }
+  .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+  .report-header {
+    background: var(--blue-dark) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .chart { height: 240px; }
+  .chart--tall { height: 380px; }
+}
